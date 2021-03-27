@@ -10,14 +10,25 @@ This project also includes a systemd configuration file that will automate the s
 * installs python dependencies easily using pipenv
 
 ### Requirements
-* python installed
+* python >= 3.9
 * python package 'pipenv'
 
-### Useage
+### Installation
 * clone the repo from github
 * make sure you have pipenv installed
 * run pipenv to install the dependencies
-* (optional) add the systemd script to your system's /etc/systemd
+
+### Useage
+* invoke from your own python projects
+* add the systemd script to your system's /etc/systemd
 
 ### Project Life
 * March 27, 2021: initial release
+
+# Appendixes
+
+### Install and useage on Ubuntu 20.04
+* March 27 2021: python on Ubuntu is version 3.8 but version 3.9 is needed here
+* [install python 3.9 using premade ppa](https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/)
+* [install pip for python 3.9 using get-pip.py](https://stackoverflow.com/questions/65644782/how-to-install-pip-for-python-3-9-on-ubuntu-20-04)
+* run `python3.9` instead of `python`
