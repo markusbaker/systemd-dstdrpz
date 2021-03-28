@@ -68,3 +68,4 @@ More advanced useages:
 * [install python 3.9 using premade ppa](https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/)
 * [install pip for python 3.9 using get-pip.py](https://stackoverflow.com/questions/65644782/how-to-install-pip-for-python-3-9-on-ubuntu-20-04)
 * run `python3.9` instead of `python`
+* to stop fullscreen window minimizing, set `export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0` in .profile [as described in this SO article](https://superuser.com/questions/1144959/how-do-i-stop-fullscreen-games-from-minimizing-when-i-click-on-another-window-on). You will need to re-login your ubuntu session.
