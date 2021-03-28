@@ -5,35 +5,49 @@ The first time it runs, the program launches into a config mode that collects lo
 * hover the mouse to a specific place
 * press the enter key to move on
 
-This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve (Together) item opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
+The prompts on screen will guide you, eventually indicating that the setup is complete. The program will remain running forever, waiting about 24 hours before it wakes up and checks for the time again.
 
-### Todo (what this doesn't do) 
+This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve (Together) automatic daily gift opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
 
 ### Features:
 * automates opening/closing of the Don't Starve Together client
 * automates opening of daily (and other) gifts at startup
 * easy to use: guides users through first-time setup with dialog boxes
 * installs python dependencies easily using pipenv
+* leverages virtualenv with pipenv for quick setup
 
 ### Requirements
 * python >= 3.9
-* python package 'pipenv'
+* python package 'pipenv' (requires virtualenv)
+* remaining requirements are in Pipfile  
 * a pinned link to the game on your screen that is always visible
 
 ### Installation
 * clone the repo from github
 * make sure you have pipenv installed
 * run pipenv to install the dependencies
-
+* load the service script into systemd
 ~~~
+# INCOMPLETE INSTRUCTIONS
+# please feel free to contribute to this!
+
+# download the code
 git clone https://github.com/markusbaker/systemd-dstdrpz.git`  
+
+# open the downloaded directory
 cd systemd-dstdrpz
+
+# make sure pipenv is installed
+python -m pip install pipenv
+
+# install the Pipfile dependencies
+# also automatically creates a new virtual environment
 python -m pipenv install
 ~~~
 
 ### Useage
 * invoke from your own python projects
-* add the systemd script to your system's /etc/systemd
+* modify and add the systemd script (dddds.service) to your system's /etc/systemd
 
 ### Project Life
 * March 27, 2021: initial release
