@@ -1,4 +1,4 @@
-# Definite Daily Drop Don't Starve (_aka DDDDST_)
+# Definite Daily Drop Don't Starve Together (_aka DDDDST_)
 Automaically open your Don't Starve Together **login gifts** with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
 
 The first time it runs, the program launches into a config mode that collects locations on screen using your mouse pointer. Dialog boxes will ask you to:
