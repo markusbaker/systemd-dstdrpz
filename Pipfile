@@ -8,6 +8,7 @@ pipenv = "*"
 pyautogui = "*"
 adict = "*"
 pymsgbox = "*"
+python-xlib = "*"
 
 [dev-packages]
 

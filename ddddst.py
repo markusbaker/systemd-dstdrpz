@@ -225,13 +225,13 @@ if __name__ == "__main__":
 
         _button_skip = "Skip"
         _button_collect_drops = "Collect Drops"
-        pymsgbox.confirm("Preparing to automatically collect Don't Starve daily drops using python. Would you like "
+        r = pymsgbox.confirm("Preparing to automatically collect Don't Starve daily drops using python. Would you like "
                          "to skip collection, just this time? Definite Daily Drop Don't Starve (DDDDS) will run again "
                          "in about a day.", title="Would you like to skip?", buttons=(_button_skip,
                                                                                       _button_collect_drops),
-                         timeout=10000.)
+                         timeout=10000)
+        if r in [pymsgbox.TIMEOUT_TEXT, _button_collect_drops]
+            open_and_close_dst()
 
-        open_and_close_dst()
-
-        # repeat in one day
-        time.sleep(24)
+        # repeat in about one day
+        time.sleep(23.8*3600)

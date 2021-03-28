@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "aed5fc00b96fdab32e611a747e49ac162901921a2852f62188dca1bb064c55f7"
+            "sha256": "73f214c49416db4a404f8a09b5cf5cac6f2a5c3478b7033712b21afc531e55fd"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -102,6 +102,20 @@
                 "sha256:224963114176208eee13b0b984de1f5fdc11b7393ce48ad2b52390dc8855d346"
             ],
             "version": "==0.1.26"
+        },
+        "python-xlib": {
+            "hashes": [
+                "sha256:044095d1b1a5eab5a79f8d0b66f811a9ac6acd038dd3bae00cb3dbe90b32a7e3",
+                "sha256:e4bcb756f4aa05be7b82ee21de0ba04d73414018727b42ebd9fbcf409ea75d13"
+            ],
+            "index": "pypi",
+            "version": "==0.29"
+        },
+        "python3-xlib": {
+            "hashes": [
+                "sha256:dc4245f3ae4aa5949c1d112ee4723901ade37a96721ba9645f2bfa56e5b383f8"
+            ],
+            "version": "==0.15"
         },
         "pytweening": {
             "hashes": [
