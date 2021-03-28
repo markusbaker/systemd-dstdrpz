@@ -12,8 +12,11 @@ import logging
 import pyperclip
 import random
 
+MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 5
+LOAD_GAME_WAITTIME_S = 10.
 
 logger = logging.getLogger(__name__)
+
 
 def copy_clipboard():
     time.sleep(0.3)
