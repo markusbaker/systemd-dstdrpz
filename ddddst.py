@@ -13,9 +13,11 @@ MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 3
 LOAD_GAME_WAITTIME_S = 10.
 
 # set to None to start immediately, otherwise set to an hour between 0h (midnight) and 23h (11 pm).
-STARTING_HOUR = 2
+STARTING_HOUR = None
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG,
+    format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
 logger = logging.getLogger("ddddst")
 
 
@@ -172,13 +174,17 @@ def open_and_close_dst():
 
 if __name__ == "__main__":
 
+    print("***************")
+    print("*** DDDDST ****")
+    print("***************")
 
+    logger.info("Starting DDDDST")
     while True:
         # try to wait for correct starting hour
         if STARTING_HOUR is None or not isinstance(STARTING_HOUR, int) or (STARTING_HOUR < 0 or STARTING_HOUR > 23):
-            logger.info("Not waiting for a particular starting hour, got parameter '{}'".format(STARTING_HOUR))
+            logger.info("Not waiting for a particular starting hour, got STARTING_HOUR='{}'".format(STARTING_HOUR))
         else:
-            logger.info("Waiting for a particular starting hour, got time '{}h'".format(STARTING_HOUR))
+            logger.info("Waiting for a particular starting hour, got STARTING_HOUR='{}h' and current hour is {}".format(STARTING_HOUR, datetime.datetime.now().hour))
             while datetime.datetime.now().hour != STARTING_HOUR:
                 time.sleep(60)
 
@@ -190,12 +196,13 @@ if __name__ == "__main__":
                                                                                       _button_collect_drops),
                          timeout=10000)
         
+        # they did not answer before timeout, or selected 'Collect'
         if r in ['Timeout', _button_collect_drops]:
             logger.info("Collecting drops now!")
             open_and_close_dst()
 
-        # repeat in about one day
-        logger.info("Sleeping for about a day.")
+        # try again/repeat in about one day
+        logger.info("sleeping for about a day.")
         time.sleep(23.8*3600)
-        logger.info("Running again at {}".format(datetime.datetime.now()))
+        logger.info("running again at {}".format(datetime.datetime.now()))
 
