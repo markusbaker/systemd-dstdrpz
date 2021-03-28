@@ -1,5 +1,5 @@
-# Definite Daily Drop Don't Starve (_aka DDDDS_)
-Automaically open your Don't Starve (Together) **login gifts** with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
+# Definite Daily Drop Don't Starve (_aka DDDDST_)
+Automaically open your Don't Starve Together **login gifts** with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
 
 The first time it runs, the program launches into a config mode that collects locations on screen using your mouse pointer. Dialog boxes will ask you to:
 * hover the mouse to a specific place
@@ -7,7 +7,7 @@ The first time it runs, the program launches into a config mode that collects lo
 
 The prompts on screen will guide you, eventually indicating that the setup is complete. The program will remain running forever, waiting about 24 hours before it wakes up and checks for the time again.
 
-This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve (Together) automatic daily gift opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
+This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve Together automatic daily gift opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
 
 ### Features:
 * automates opening/closing of the Don't Starve Together client
@@ -47,7 +47,7 @@ python -m pipenv install
 
 ### Useage
 * invoke from your own python projects
-* modify and add the systemd script (dddds.service) to your system's /etc/systemd
+* modify and add the systemd script (ddddst.service) to your system's /etc/systemd
 
 ### Project Life
 * March 27, 2021: initial release

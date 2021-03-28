@@ -1,12 +1,12 @@
 [Unit]
-Description="dddds"
+Description="ddddst"
 After=network-online.target
 
 [Service]
 User=<your username>
 WorkingDirectory=<path to your project directory>
 Environment="PATH=<path to virtual environment>/bin"
-ExecStart=definite_daily_drop_dont_starve.py
+ExecStart=ddddst.py
 
 [Install]
 WantedBy=multi-user.target
