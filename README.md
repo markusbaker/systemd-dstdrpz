@@ -1,5 +1,9 @@
-# Definite Daily Drop Don't Starve Together (_aka DDDDST_)
-Automaically open your Don't Starve Together **login gifts** with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
+# systemd-dstdrpz 
+> _aka Definite Daily Drop Don't Starve Together_
+
+> _aka DDDDST_
+
+What a dream! This python script automaically opens your Don't Starve Together client and opens your **login gifts**. Configure the program directly in the script (`ddddst.py`) by setting the values of the ALL_CAPS constants at the top.
 
 The first time it runs, the program launches into a config mode that collects locations on screen using your mouse pointer. Dialog boxes will ask you to:
 * hover the mouse to a specific place
@@ -28,7 +32,7 @@ This project also includes a systemd configuration file that will automate the s
 * run pipenv to install the dependencies
 * load the service script into systemd
 ~~~
-# INCOMPLETE INSTRUCTIONS
+# INCOMPLETE SETUP INSTRUCTIONS (aka setup inspiration)
 # please feel free to contribute to this!
 
 # download the code
@@ -46,6 +50,11 @@ python -m pipenv install
 ~~~
 
 ### Useage
+The simplest useage directly invokes the python script:
+```python
+python ddddst.py
+``` 
+More advanced useages:
 * invoke from your own python projects
 * modify and add the systemd script (ddddst.service) to your system's /etc/systemd
 
