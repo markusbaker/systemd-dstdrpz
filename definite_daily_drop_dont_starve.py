@@ -1,21 +1,22 @@
-import pymsgbox
-
-import pyautogui as pya
-import time
+import datetime
 import logging
 import os
-from adict import adict
 import pickle
-import pyautogui as pya
-import time
-import logging
-import pyperclip
 import random
+import time
 
-MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 5
+import pyautogui as pya
+import pymsgbox
+import pyperclip
+from adict import adict
+
+MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 3
 LOAD_GAME_WAITTIME_S = 10.
 
-logger = logging.getLogger(__name__)
+# set to None to start immediately, otherwise set to an hour between 0h (midnight) and 23h (11 pm).
+STARTING_HOUR = None
+
+logger = logging.getLogger("dddds")
 
 
 def copy_clipboard():
@@ -24,10 +25,11 @@ def copy_clipboard():
     time.sleep(.3)  # ctrl-c is usually very fast but your program may execute faster
     return pyperclip.paste()
 
+
 # Payment Deposited	Student Paid $	Receipt Send?	Invoicing Notes	Notetaking Notes	Service cut off
 
 
-def random_short_pause(min_wait_s=1/100., max_wait_s=1/40.):
+def random_short_pause(min_wait_s=1 / 100., max_wait_s=1 / 40.):
     """
 
     :param min_wait_s:
@@ -164,8 +166,6 @@ class PositionHelper:
 
 
 def open_and_close_dst():
-    logger = logging.getLogger(open_and_close_dst.__name__)
-
     # boilerplate code for position acquisition
     k_app_menu = "pinned/docked app icon"
     k_white_space = "safe whitespace to click in the main game menu"
@@ -224,4 +224,24 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO)
 
-    open_and_close_dst()
+    while True:
+        # try to wait for correct starting hour
+        if STARTING_HOUR is None or not isinstance(STARTING_HOUR, int):
+            logger.error("Not waiting for the starting hour '{}'".format(STARTING_HOUR))
+        else:
+            while datetime.datetime.now().hour != STARTING_HOUR:
+                # wait 1/100th of an hour
+                time.sleep(3600./100)
+
+        _button_skip = "Skip"
+        _button_collect_drops = "Collect Drops"
+        pymsgbox.confirm("Preparing to automatically collect Don't Starve daily drops using python. Would you like "
+                         "to skip collection, just this time? Definite Daily Drop Don't Starve (DDDDS) will run again "
+                         "in about a day.", title="Would you like to skip?", buttons=(_button_skip,
+                                                                                      _button_collect_drops),
+                         timeout=10000.)
+
+        open_and_close_dst()
+
+        # repeat in one day
+        time.sleep(24)
