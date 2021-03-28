@@ -1,13 +1,163 @@
 import pymsgbox
 
-from xbpy.pyautogui import PositionHelper, human_move_cursor, human_write
 import pyautogui as pya
 import time
 import logging
+import os
+from adict import adict
+import pickle
+import pyautogui as pya
+import time
+import logging
+import pyperclip
+import random
 
 
-MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 5
-LOAD_GAME_WAITTIME_S = 10.
+logger = logging.getLogger(__name__)
+
+def copy_clipboard():
+    time.sleep(0.3)
+    pya.hotkey('ctrl', 'c')
+    time.sleep(.3)  # ctrl-c is usually very fast but your program may execute faster
+    return pyperclip.paste()
+
+# Payment Deposited	Student Paid $	Receipt Send?	Invoicing Notes	Notetaking Notes	Service cut off
+
+
+def random_short_pause(min_wait_s=1/100., max_wait_s=1/40.):
+    """
+
+    :param min_wait_s:
+    :param max_wait_s:
+    :return: A uniformly distributed random result between (min, max).
+    """
+    time.sleep(random.uniform(min_wait_s, max_wait_s))
+
+
+def random_long_pause(min_wait_s=0.6, max_wait_s=1.5):
+    """
+    Sleeps for approx 1. +/- 0.4 s pause.
+    :param min_wait_s:
+    :param max_wait_s:
+    :return: A uniformly distributed random result between (min, max).
+    """
+    time.sleep(random.uniform(min_wait_s, max_wait_s))
+
+
+def human_write(s, fast=False, triple_click_first=True):
+    """
+    Writes keystrokes with small random delays in between. Simulates life lol.
+    :param fast: Write all keystrokes at once with no waits in between.
+    :param s: The string to type.
+    :param triple_click_first: Issues a triple-click to select all text at the current mouse position before typing
+    the given keystrokes.
+    """
+    if triple_click_first:
+        pya.tripleClick()
+
+    # initial random wait before starting the string
+    random_long_pause()
+
+    # decidedly not human-like lol
+    if fast:
+        pya.write(s)
+    # the usual behaviour
+    else:
+        for _ in s:
+            pya.write(_)
+            random_short_pause()
+
+    # final random wait
+    random_long_pause()
+
+
+def human_move_cursor(pos, mouse_travel_time=1.):
+    random_long_pause()
+    pya.moveTo(int(pos[0]), int(pos[1]), mouse_travel_time, pya.easeInOutQuad)
+    random_long_pause()
+
+
+class PositionHelper:
+    """
+    Helps to iteratively capture a dictionary of positions and store them for future use.
+
+    Implicitly expects to store the captured positions to a pickle file.
+
+    Useful for capturing the screen locations needed to use pyautogui.
+
+    Example:
+        # create a helper at a specific root directory
+        pos_helper = PositionHelper.load_or_create_helper(invoice_output_dir)
+
+        key = "WHITE_SPACE_POSITION"
+        p = pos_helper.get_position(key)
+        pos_helper.save_positions()
+
+    """
+
+    DEFAULT_PICKLE_FILENAME = "positions_helper.pickle"
+
+    def __init__(self, root_dir=None, helper_wait_time_s=1):
+        """
+
+        :param root_dir: The parent directory where this helper is stored. CWD by default.
+        """
+
+        # defaults
+        self.delay_in_s = helper_wait_time_s
+        self.positions = adict()
+        if root_dir is None:
+            root_dir = os.getcwd()
+        self.root_dir = root_dir
+
+        # override defaults if found in file
+        pickle_file = self._pickle_path(root_dir)
+        if os.path.isfile(pickle_file):
+            print("Loading cursor positions from {}".format(pickle_file))
+            obj = pickle.load(open(pickle_file, "rb"))
+            self.positions = obj.positions
+            print("  found {} stored positions".format(len(obj.positions)))
+            self.delay_in_s = obj.delay_in_s
+
+    @property
+    def pickle_path(self):
+        return self._pickle_path(self.root_dir)
+
+    @staticmethod
+    def _pickle_path(root_dir):
+        return os.path.join(root_dir, PositionHelper.DEFAULT_PICKLE_FILENAME)
+
+    def save_positions(self):
+        print("Saving cursor positions to {}".format(self.pickle_path))
+        pickle.dump(self, open(self.pickle_path, "wb"))
+
+    def get_position(self, key, force_capture=False):
+        """
+        Captures a position if the position has not been captured before.
+
+        :param key:
+        :param force_capture: Prompt for a new position even if the key was found.
+        :return: The position tuple for the given key.
+        """
+        if force_capture or key not in self.positions:
+            pya.alert('place your cursor in the following textbox/button location:\n{}'.format(key))
+
+            # check interval
+            inc = 1.
+            total_wait = 0.
+            max_wait = self.delay_in_s
+
+            # wait at cursor position
+            while total_wait < max_wait:
+                print("    ... capturing in {}s".format(max_wait - total_wait))
+                time.sleep(inc)
+                total_wait += inc
+
+            # capture position
+            tup = pya.position()
+            self.positions[key] = tup
+
+        return self.positions[key]
 
 
 def open_and_close_dst():

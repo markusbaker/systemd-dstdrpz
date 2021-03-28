@@ -1,5 +1,5 @@
 # systemd-dstdrpz
-Automaically open your Don't Starve (Together) gifts with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
+Automaically open your Don't Starve (Together) **login gifts** with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
 
 This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve (Together) item opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
 
@@ -17,6 +17,12 @@ This project also includes a systemd configuration file that will automate the s
 * clone the repo from github
 * make sure you have pipenv installed
 * run pipenv to install the dependencies
+
+~~~
+git clone https://github.com/markusbaker/systemd-dstdrpz.git`  
+cd systemd-dstdrpz
+python -m pipenv install
+~~~
 
 ### Useage
 * invoke from your own python projects
