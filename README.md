@@ -13,7 +13,7 @@ The prompts on screen will guide you, eventually indicating that the setup is co
 
 This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve Together automatic daily gift opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
 
-### Features:
+### Features
 * automates opening/closing of the Don't Starve Together client
 * automates opening of daily (and other) gifts at startup
 * easy to use: guides users through first-time setup with dialog boxes
