@@ -13,7 +13,7 @@ MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 3
 LOAD_GAME_WAITTIME_S = 10.
 
 # set to None to start immediately, otherwise set to an hour between 0h (midnight) and 23h (11 pm).
-STARTING_HOUR = None
+STARTING_HOUR = 2
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ddddst")
