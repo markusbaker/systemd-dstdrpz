@@ -23,7 +23,7 @@ This project also includes a systemd configuration file that will automate the s
 ### Requirements
 * python >= 3.9
 * python package 'pipenv' (requires virtualenv)
-* remaining requirements are in Pipfile  
+* remaining requirements are in Pipfile  (notably, [pyautogui](https://github.com/asweigart/pyautogui), [pymsgbox](https://github.com/asweigart/PyMsgBox), and [adict](https://github.com/denis-ryzhkov/adict))
 * a pinned link to the game on your screen that is always visible
 
 ### Installation
