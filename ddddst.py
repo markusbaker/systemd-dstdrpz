@@ -178,9 +178,9 @@ if __name__ == "__main__":
         if STARTING_HOUR is None or not isinstance(STARTING_HOUR, int) or (STARTING_HOUR < 0 or STARTING_HOUR > 23):
             logger.info("Not waiting for a particular starting hour, got parameter '{}'".format(STARTING_HOUR))
         else:
+            logger.info("Waiting for a particular starting hour, got time '{}h'".format(STARTING_HOUR))
             while datetime.datetime.now().hour != STARTING_HOUR:
-                # wait 1/100th of an hour
-                time.sleep(3600./100)
+                time.sleep(60)
 
         _button_skip = "Skip"
         _button_collect_drops = "Collect Drops Now"
@@ -197,4 +197,5 @@ if __name__ == "__main__":
         # repeat in about one day
         logger.info("Sleeping for about a day.")
         time.sleep(23.8*3600)
+        logger.info("Running again at {}".format(datetime.datetime.now()))
 
