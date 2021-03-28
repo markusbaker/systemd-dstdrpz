@@ -7,7 +7,6 @@ import time
 
 import pyautogui as pya
 import pymsgbox
-import pyperclip
 from adict import adict
 
 MAX_NUM_OPENABLES_AT_MAIN_SCREEN = 3
@@ -17,16 +16,6 @@ LOAD_GAME_WAITTIME_S = 10.
 STARTING_HOUR = None
 
 logger = logging.getLogger("dddds")
-
-
-def copy_clipboard():
-    time.sleep(0.3)
-    pya.hotkey('ctrl', 'c')
-    time.sleep(.3)  # ctrl-c is usually very fast but your program may execute faster
-    return pyperclip.paste()
-
-
-# Payment Deposited	Student Paid $	Receipt Send?	Invoicing Notes	Notetaking Notes	Service cut off
 
 
 def random_short_pause(min_wait_s=1 / 100., max_wait_s=1 / 40.):
@@ -145,7 +134,8 @@ class PositionHelper:
         :return: The position tuple for the given key.
         """
         if force_capture or key not in self.positions:
-            pya.alert('place your cursor in the following textbox/button location:\n{}'.format(key))
+            pya.alert('place your cursor in the following textbox/button location:\n{}.\n\nPress the Enter key when '
+                      'ready and wait for the next prompt.'.format(key))
 
             # check interval
             inc = 1.

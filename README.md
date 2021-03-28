@@ -1,6 +1,10 @@
 # Definite Daily Drop Don't Starve (_aka DDDS_)
 Automaically open your Don't Starve (Together) **login gifts** with this set of simple scripts. Uses python and pyautogui to control the mouse and keyboard.
 
+The first time it runs, the program launches into a config mode that collects locations on screen using your mouse pointer. Dialog boxes will ask you to:
+* hover the mouse to a specific place
+* press the enter key to move on
+
 This project also includes a systemd configuration file that will automate the scheduling of  this Don't Starve (Together) item opener. Especially useful for linux users who would like to automatically collect their daily gifts without having to close and reopen the client themselves.
 
 ### Todo (what this doesn't do) 
@@ -14,6 +18,7 @@ This project also includes a systemd configuration file that will automate the s
 ### Requirements
 * python >= 3.9
 * python package 'pipenv'
+* a pinned link to the game on your screen that is always visible
 
 ### Installation
 * clone the repo from github
